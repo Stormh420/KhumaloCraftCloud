@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KhumaloCraftPOE</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KhumaloCraftPOE.styles.css" asp-append-version="true" />
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        background-image: url('/Images/Bg.jpg');
+        background-size: cover;
+        background-position: center center;
+    }
+</style>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KhumaloCraftPOE</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="ForSale">My Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Account">Account</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Account</a>
+                        }
+                    </li>
+                    <li class="nav-item">
+                         
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Cart">Cart</a>
+                    </li>   
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; 2024 Khumalo Craft. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+

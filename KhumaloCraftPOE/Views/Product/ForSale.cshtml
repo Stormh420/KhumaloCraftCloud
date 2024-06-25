@@ -1,0 +1,23 @@
+﻿@model List<KhumaloCraftPOE.Models.Entities.Product>
+
+@{
+    ViewData["Title"] = "Products for Sale";
+}
+
+<h1>Products for Sale</h1>
+
+@foreach (var product in Model)
+{
+    <div>
+        <h2>@product.Name</h2>
+        <p>@product.Description</p>
+        <p>Price: $@product.Price</p>
+        <p>Quantity Available: @product.QuantityAvailable</p>
+        <form asp-action="AddToCart" method="post">
+            <input type="hidden" name="productId" value="@product.ProductID" />
+            <input type="number" name="quantity" value="1" min="1" max="@product.QuantityAvailable" />
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+}
+

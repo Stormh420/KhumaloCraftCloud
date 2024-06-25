@@ -1,0 +1,59 @@
+﻿﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khumalo Craft</title>
+    <style>
+        .Text1 {
+            font-family: Garamond;
+            font-size: 50px;
+            color: #D9D9D9;
+            text-align: center;
+        }
+
+        .ButtonContainer {
+            display: flex;
+            justify-content: center; /* Center the button horizontally */
+            margin-top: 20px; /* Add some space above the button if needed */
+        }
+
+        .Button1 {
+            background-color: #3B6932;
+            width: 366px;
+            height: 90px;
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            border-radius: 15px; /* Adjust the value for desired corner roundness */
+        }
+
+        .ButtonText1 a {
+            color: #FFFFFF !important; /* White color */
+            font-size: 40px;
+            text-decoration: none !important; /* Remove underline */
+        }
+
+            .ButtonText1 a:hover {
+                color: #3B6932; /* Change text color on hover */
+            }
+    </style>
+</head>
+<body>
+    <div class="Text1">
+        <h1>Khumalo Craft</h1>
+        <h1>keep things hand made</h1>
+        <h1>and special</h1>
+    </div>
+    <div class="ButtonContainer">
+        <div class="Button1">
+            <div class="ButtonText1">
+                <a class="@(ViewContext.RouteData.Values["action"]?.ToString() == "MyWork" ? "active" : "")" href="@Url.Action("MyWork")">Check Out</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

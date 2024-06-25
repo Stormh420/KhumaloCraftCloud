@@ -1,0 +1,126 @@
+﻿<!-- Views/Account/Account.cshtml -->
+@model KhumaloCraftPOE.Models.AccountViewModel
+
+@{
+    ViewData["Title"] = "Account";
+}
+
+<h1>Account Dashboard</h1>
+
+<div>
+    <h2>User Details</h2>
+    <p><strong>Name:</strong> @Model.User.FirstName @Model.User.LastName</p>
+    <p><strong>Email:</strong> @Model.User.Email</p>
+    <p><strong>Delivery Address:</strong> @Model.User.DeliveryAddress</p>
+</div>
+
+<div>
+    <h2>My Orders</h2>
+    @if (Model.Orders != null && Model.Orders.Any())
+    {
+        <table>
+            <tr>
+                <th>OrderID</th>
+                <th>Order Date</th>
+                <th>Total Amount</th>
+                <th>Delivery Location</th>
+            </tr>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <td>@order.OrderID</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.TotalAmount</td>
+                    <td>@order.DeliveryLocation</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No orders found.</p>
+    }
+</div>
+
+<div>
+    <h2>Products for Sale</h2>
+    @if (Model.ProductsForSale != null && Model.ProductsForSale.Any())
+    {
+        <table>
+            <tr>
+                <th>ProductID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity Available</th>
+            </tr>
+            @foreach (var product in Model.ProductsForSale)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price</td>
+                    <td>@product.QuantityAvailable</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No products for sale.</p>
+    }
+</div>
+
+<div>
+    <h2>Add New Product</h2>
+    <form asp-action="AddProduct" method="post">
+        <div>
+            <label for="Name">Name</label>
+            <input type="text" name="Name" />
+        </div>
+        <div>
+            <label for="Description">Description</label>
+            <input type="text" name="Description" />
+        </div>
+        <div>
+            <label for="Price">Price</label>
+            <input type="number" name="Price" />
+        </div>
+        <div>
+            <label for="QuantityAvailable">Quantity Available</label>
+            <input type="number" name="QuantityAvailable" />
+        </div>
+        <button type="submit">Add Product</button>
+    </form>
+</div>
+
+<div>
+    <h2>Orders on My Products</h2>
+    @if (Model.OrdersOnMyProducts != null && Model.OrdersOnMyProducts.Any())
+    {
+        <table>
+            <tr>
+                <th>OrderID</th>
+                <th>Order Date</th>
+                <th>Total Amount</th>
+                <th>Delivery Location</th>
+            </tr>
+            @foreach (var order in Model.OrdersOnMyProducts)
+            {
+                <tr>
+                    <td>@order.OrderID</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.TotalAmount</td>
+                    <td>@order.DeliveryLocation</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No orders found on your products.</p>
+    }
+</div>
+
+

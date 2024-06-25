@@ -1,0 +1,47 @@
+﻿@model List<KhumaloCraftPOE.Models.Entities.CartItem>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+    decimal cartTotal = Model.Sum(item => item.Quantity * item.Product.Price);
+}
+
+<h1>Shopping Cart</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Product.Price.ToString("C")</td>
+                    <td>@(item.Quantity * item.Product.Price).ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Total Amount: @cartTotal.ToString("C")</h3>
+
+    <form asp-action="EnterPaymentMethod" method="post">
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}
+
+
+
+

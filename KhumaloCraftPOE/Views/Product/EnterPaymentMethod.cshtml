@@ -1,0 +1,16 @@
+﻿@model KhumaloCraftPOE.Models.Entities.PaymentMethodViewModel
+
+@{
+    ViewData["Title"] = "Enter Payment Method";
+}
+
+<h1>Enter Payment Method</h1>
+
+<form asp-action="ProcessOrder" method="post">
+    <div class="form-group">
+        <label for="PaymentMethod">Payment Method</label>
+        <input type="text" class="form-control" id="PaymentMethod" name="PaymentMethod" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
