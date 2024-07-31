@@ -1,12 +1,6 @@
 using KhumaloCraftPOE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask.ContextImplementations;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask.Options;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,15 +17,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Adjust expiration time as needed
     });
 
-// Add Durable Functions services
-builder.Services.AddSingleton<IDurableClientFactory, DurableClientFactory>();
-builder.Services.AddSingleton<IDurableOrchestrationClient>(serviceProvider =>
-{
-    var clientFactory = serviceProvider.GetRequiredService<IDurableClientFactory>();
-    return clientFactory.CreateClient(new DurableClientOptions());
-});
-
-WebApplication app = builder.Build();
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
